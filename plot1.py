@@ -1,4 +1,9 @@
 # Attempt Number 1: Linear Regression
+#
+# Plot the four potential features compared to the target output (PE) to see which might be useful.
+# Plotting the data in general will help us get some for how tot hink about the informaiton and can
+# provide some insight into what we need to do.
+# 
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -24,25 +29,21 @@ df = pd.read_csv("data/CCPP_data.csv")
 plt.figure(1)
 plt.title("AT")
 plt.scatter(df[["AT"]], df[["PE"]], color="red")
-#plt.xticks(())
-#plt.yticks(())
+plt.savefig("images/plot_feature_AT.png")
 
 plt.figure(2)
 plt.title("AP")
 plt.scatter(df[["AP"]], df[["PE"]], color="blue")
-#plt.xticks(())
-#plt.yticks(())
+plt.savefig("images/plot_feature_AP.png")
 
 plt.figure(3)
 plt.title("RH")
 plt.scatter(df[["RH"]], df[["PE"]], color="green")
-#plt.xticks(())
-#plt.yticks(())
+plt.savefig("images/plot_feature_RH.png")
 
 plt.figure(4)
 plt.title("V")
 plt.scatter(df[["V"]], df[["PE"]], color="purple")
-#plt.xticks(())
-#plt.yticks(())
+plt.savefig("images/plot_feature_V.png")
 
 plt.show()
