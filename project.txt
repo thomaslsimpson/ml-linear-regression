@@ -1,0 +1,59 @@
+Assignment: In this project we will build a model to predict the electrical energy output of a Combined Cycle Power Plant, which uses a combination of gas turbines, steam turbines, and heat recovery steam generators to generate power.  We have a set of 9568 hourly average ambient environmental readings from sensors at the power plant which we will use in our model.
+
+
+	1. For the problem described in the Project Topic section above, determine what type of machine learning approach is needed and select an appropriate output metric to evaluate performance in accomplishing the task.
+
+This appears to be a simple regression problem where we want to use the features set to determine the output (predict the electrical energy output) based on the column target "Net hourly electrical energy output" (PE) in the data.
+
+ 
+
+	2. Determine which possible features we may want to use in the model, and identify the different algorithms we might consider.
+
+I think the first step is to just test out the simplest thing that could possibly work: linear regression. My intuition is that temperature is the best predictor, but I also think that we need to check the other feautures because they might have an impact. I'm betting that the exhuast vaccum does not matter and is at best already covered in the pressure, but we should be able to test this out.
+
+Attempt 1: Using Linear Regression gets 90% with a MSE of around 30 just on temperature.
+
+Attempt 2: Next, I rewrote the program to run each of the four features in a linear regression and they were all wrose than temperature, which is what I expected. So, either temperature is the best we can do, or we might be able to use a combination of the other columns to get even more accurate, though I need to be careful not to overfit.
+
+Attempt 3: Using multiple feautures, I was able to determine the 0.92 is the best I can do. I will now use cross-validation through folds to see if that has any impact the results I am getting.
+
+I decided to plot out each variable to see if I could get a better feel for which variables where strongly corelated to PE. AT and V seem to be closely corelated to PE (meaning by initial intuition was wrong). 
+
+
+	3. Split your data to create a test set to evaluate the performance of your final model.  Then, using your training set, determine a validation strategy for comparing different models - a fixed validation set or cross-validation.  Depending on whether you are using Excel, Python or AutoML for your model building, you may need to manually split your data to create the test set and validation set / cross validation folds.
+
+
+Attempt 4: Using the internal functions built into scikit, I focused on letting the data show me the right thing to do by testing different feature combinations and then looking at the results to compare them, using a split of training, validation, and testing data.
+
+
+
+
+	4. Use your validation approach to compare at least two different models (which may be either 1) different algorithms, 2) the same algorithm with different combinations of features, or 3) the same algorithm and features with different values for hyperparameters).  From among the models you compare, select the model with the best performance on your validation set as your final model.
+
+I compared different features on the same linear regression model and got these results:
+
+AT		MSE Validation: 30.661447164469113 	Test: 28.92833213148098 	R2: 0.9002670702584261 	MAPE: 0.9462638263715271
+V		MSE Validation: 68.52771780462527 	Test: 69.97452255787228 	R2: 0.7587567748377073 	MAPE: 1.4232587195837079
+AT, V, RH	MSE Validation: 21.92513663356294 	Test: 20.38961245993731 	R2: 0.9297050456389121 	MAPE: 0.7945207290561574
+AT, V, AP, RH	MSE Validation: 21.887187590458108 	Test: 20.301637786791286 	R2: 0.9300083459417443 	MAPE: 0.7933786123373698
+
+
+	5. Evaluate the performance of your final model using the output metric you defined earlier.  
+
+Clearly, we get the best results when we use all four features.
+
+The final model can predict the output with (what appears to be) a high degree of accuracy.
+
+
+The following criteria will be used to judge:
+
+Modeling approach - did you correctly identify the type of modeling task, features to use, and possible algorithms to use?
+
+Model building  - did you compare at least two different models (different algorithms, different combinations of features, or different hyperparameter combinations) using a vlidation set or cross-validation to optimize your model?
+
+Model evaluation - did you set a reasonable evaluation metric to determine the performance of your model, and then calculate it on the test set?
+
+Model interpretation - did you correctly interpret and clearly communicate the performance of your model?
+
+
+
