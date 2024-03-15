@@ -26,12 +26,16 @@ def test_feature(feature_col, target_col, len_train, len_test):
 	# Make predictions using the testing set
 	prediction = regr.predict(data_test)
 
+	MSE= mean_squared_error(target_test, prediction)
+	R2 = r2_score(target_test, prediction)
+	print(f"{regr.coef_}\t{MSE:.2f}\t{R2:.2f}")
+
 	# The coefficients
-	print("Coefficients: \n", regr.coef_)
+	#print("Coefficients: ", regr.coef_)
 	# The mean squared error
-	print("Mean squared error: %.2f" % mean_squared_error(target_test, prediction))
+	#print("MSE: %.2f" % mean_squared_error(target_test, prediction))
 	# The coefficient of determination: 1 is perfect prediction
-	print("Coefficient of determination: %.2f" % r2_score(target_test, prediction))
+	#print("R2: %.2f" % r2_score(target_test, prediction))
 
 	# Plot outputs
 	plt.scatter(data_test, target_test, color="black")
@@ -57,8 +61,15 @@ len_pe= len(hourly_output_data)
 len_train = int(len_pe * 0.8)
 len_test = len_pe - len_train
 
+print("AT", end="\t")
 test_feature(df[["AT"]], df[["PE"]], len_train, len_test)
+
+print("V", end="\t")
 test_feature(df[["V"]], df[["PE"]], len_train, len_test)
+
+print("AP", end="\t")
 test_feature(df[["AP"]], df[["PE"]], len_train, len_test)
+
+print("RH", end="\t")
 test_feature(df[["RH"]], df[["PE"]], len_train, len_test)
 
