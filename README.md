@@ -40,4 +40,20 @@ In Attempt 2 [attempt2_linear_regression.py](./attempt2_linear_regression.py) we
 |RH |0.44896125|239.57|0.17|
 
 
+Next, I decided to look at performance of the variables in different combinations. Since the AP and RH column seem to ahve such little impact, I was curious about whether I needed to oncude them or not. It seems to me that including feautes that do not add value is a great way to end up with overfitting.
+
+I moved on to Attempt 4 [Attempt 4](./attempt4_linear_regression.py) which I used to demonstrate that in the end, all four features were adding something to the prediction.
+
+runFit(df[['AT']], df['PE'])
+runFit(df[['V']], df['PE'])
+runFit(df[['AT', 'V', 'RH']], df['PE'])
+runFit(df[['AT', 'V', 'AP', 'RH']], df['PE'])
+
+|Feature      | MSE                | Coef               | R2                 | MAPE               |
+|-------------|--------------------|--------------------|--------------------|--------------------|
+|AT           | 30.661447164469113 | 28.92833213148098  | 0.9002670702584261 | 0.9462638263715271 |
+|V            | 68.52771780462527  | 69.97452255787228 	| 0.7587567748377073 | 1.4232587195837079 |
+|AT, V, RH    | 21.92513663356294  | 20.38961245993731 	| 0.9297050456389121 | 0.7945207290561574 |
+|AT, V, AP, RH| 21.887187590458108 | 20.301637786791286 | 0.9300083459417443 | 0.7933786123373698 |
+
 

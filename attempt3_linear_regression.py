@@ -52,7 +52,7 @@ PERC_VALID = 1.0 - (PERC_TRAIN + PERC_TEST)
 # Pull out the target column: "PE"
 hourly_output_data = df[["PE"]]
 len_pe= len(hourly_output_data)
-len_train = int(len_pe * PREC_TRAIN) 
+len_train = int(len_pe * PERC_TRAIN) 
 len_test  = int(len_pe * PERC_VALID)
 len_valid = len_pe - (len_train + len_test)
 
