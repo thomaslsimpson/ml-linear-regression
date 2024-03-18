@@ -1,6 +1,6 @@
 # This is a project I did for my Duke University class on Machine Learning.
 
-I'm leaving out some of the specifics of teh class and focusing on the data itself. While anyone taking the class could use this information to copy what I did, not using all the information will make it harder to find. That said, I suspect ChatGPT would turn up most of this anyway so I'm not all that concerned about it.
+I'm leaving out some of the specifics of the class and focusing on the data itself. While anyone taking the class could use this information to copy what I did, not using all the information will make it harder to find. That said, I suspect ChatGPT would turn up most of this anyway so I'm not all that concerned about it.
 
 ## Reviewing the data.
 
